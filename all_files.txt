@@ -64,6 +64,11 @@ services:
       - "80:80"
     depends_on:
       - web
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/static/favicon.ico"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     restart: unless-stopped
 
   db:
