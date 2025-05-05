@@ -4,7 +4,6 @@ from app.config import Config
 def create_test_db():
     conn = None
     try:
-        # Подключаемся к системной БД для создания тестовой
         conn = psycopg2.connect(
             dbname="exam_db",
             user="exam",
@@ -13,10 +12,8 @@ def create_test_db():
         conn.autocommit = True
         cursor = conn.cursor()
         
-        # Пытаемся удалить старую тестовую БД если есть
         cursor.execute("DROP DATABASE IF EXISTS exam_db_test")
         
-        # Создаем новую тестовую БД
         cursor.execute("CREATE DATABASE exam_db_test WITH OWNER exam ENCODING 'UTF8'")
         print("Тестовая БД exam_db_test успешно создана")
         
